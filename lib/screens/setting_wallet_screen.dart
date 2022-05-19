@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hankest_meta/screens/components/commit_button.dart';
 
+import 'main_screen.dart';
+
 class SettingWalletScreen extends StatefulWidget {
   const SettingWalletScreen({Key? key}) : super(key: key);
 
@@ -78,6 +80,13 @@ class _SettingWalletScreenState extends State<SettingWalletScreen> {
               CommitButton(
                 buttonName: '新手上路',
                 width: MediaQuery.of(context).size.width / 3 * 2,
+                onTap: () {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                        builder: (context) => const MainScreen(),
+                      ),
+                      (route) => false);
+                },
               ),
             ],
           ),
