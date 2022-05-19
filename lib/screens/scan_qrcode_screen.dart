@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:hankest_meta/screens/components/commit_button.dart';
+import 'package:hankest_meta/screens/setting_wallet_screen.dart';
 import 'package:scan/scan.dart';
 
 class ScanQrcodeScreen extends StatefulWidget {
@@ -46,6 +47,12 @@ class _ScanQrcodeScreenState extends State<ScanQrcodeScreen> {
                             final json = jsonDecode(data);
                             //TODO 待確認Id拿取方式
                             final roomId = json["roomId"];
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const SettingWalletScreen()),
+                            );
                           },
                         ),
                       )
@@ -108,7 +115,13 @@ class _ScanQrcodeScreenState extends State<ScanQrcodeScreen> {
               CommitButton(
                 buttonName: "進入 Hankest Meta!",
                 width: MediaQuery.of(context).size.width / 3 * 2,
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SettingWalletScreen()),
+                  );
+                },
               ),
               const SizedBox(
                 height: 40,
