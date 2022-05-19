@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.hankest_meta">
+    <uses-permission android:name="android.permission.CAMERA" />
    <application
         android:label="hankest_meta"
         android:name="${applicationName}"

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hankest_meta/screens/components/commit_button.dart';
+import 'package:hankest_meta/screens/scan_qrcode_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -37,7 +39,7 @@ class WelcomeScreen extends StatelessWidget {
             style:
                 TextStyle(fontSize: 18, color: Theme.of(context).primaryColor),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           const Text(
@@ -49,53 +51,23 @@ class WelcomeScreen extends StatelessWidget {
           const SizedBox(
             height: 40,
           ),
-          GestureDetector(
-            onTap: () {},
-            child: Container(
-              width: MediaQuery.of(context).size.width / 3 * 2,
-              height: 40,
-              alignment: Alignment.center,
-              child: const Text(
-                "新手上路",
-                style: TextStyle(
-                    color: Color(0xFFFFFFFF), fontWeight: FontWeight.bold),
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Theme.of(context).primaryColor,
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color(0xFFAAAAAA),
-                    blurRadius: 2,
-                    offset: Offset(1, 3),
-                  )
-                ],
-              ),
-            ),
+          CommitButton(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ScanQrcodeScreen()),
+              );
+            },
+            buttonName: "新手上路",
+            width: MediaQuery.of(context).size.width / 3 * 2,
           ),
           const SizedBox(
             height: 20,
           ),
-          Container(
+          CommitButton(
+            buttonName: "綁定現有wallet",
             width: MediaQuery.of(context).size.width / 3 * 2,
-            height: 40,
-            alignment: Alignment.center,
-            child: const Text(
-              "綁定現有Wallet",
-              style: TextStyle(
-                  color: Color(0xFFFFFFFF), fontWeight: FontWeight.bold),
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Theme.of(context).primaryColor,
-              boxShadow: const [
-                BoxShadow(
-                  color: Color(0xFFAAAAAA),
-                  blurRadius: 2,
-                  offset: Offset(1, 3),
-                )
-              ],
-            ),
           ),
         ],
       ),
