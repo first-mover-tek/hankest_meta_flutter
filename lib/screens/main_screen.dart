@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hankest_meta/screens/welcome_screen.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -9,8 +10,25 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  int _selectedIndex = 1;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    List<Widget> _widgetOptions = <Widget>[
+      Container(),
+      const WebView(
+        initialUrl:
+            'https://nft-web-e71c3.firebaseapp.com/nftBind?wallet=0x5D715C0bDEbbc6929682BaBD0a7Da865b165897D',
+        javascriptMode: JavascriptMode.unrestricted,
+      ),
+      Container(),
+    ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -30,14 +48,8 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ],
       ),
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [],
-        ),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -62,6 +74,8 @@ class _MainScreenState extends State<MainScreen> {
         ],
         selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Theme.of(context).primaryColorDark,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
   }
