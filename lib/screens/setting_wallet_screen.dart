@@ -44,8 +44,7 @@ class _SettingWalletScreenState extends State<SettingWalletScreen> {
                 child: Stack(
                   children: [
                     Container(
-                      padding: const EdgeInsets.only(
-                          left: 10, right: 10, top: 25, bottom: 35),
+                      padding: const EdgeInsets.all(35),
                       decoration: BoxDecoration(
                         color: Theme.of(context).backgroundColor,
                         borderRadius: BorderRadius.circular(10.0),
@@ -56,7 +55,7 @@ class _SettingWalletScreenState extends State<SettingWalletScreen> {
                         ),
                       ),
                       child: const Text(
-                          "0xdffweiefcm2eomcniowejrifovjnsdicvkjsdklfvnksdljfewrmklsdv"),
+                          "0x5D715C0bDEbbc6929682BaBD0a7Da865b165897D"),
                     ),
                     Positioned(
                       right: 10,
@@ -65,7 +64,7 @@ class _SettingWalletScreenState extends State<SettingWalletScreen> {
                         onTap: () {
                           Clipboard.setData(const ClipboardData(
                               text:
-                                  "0xdffweiefcm2eomcniowejrifovjnsdicvkjsdklfvnksdljfewrmklsdv"));
+                                  "0x5D715C0bDEbbc6929682BaBD0a7Da865b165897D"));
                         },
                         child: Icon(Icons.content_copy,
                             color: Theme.of(context).primaryColor),
