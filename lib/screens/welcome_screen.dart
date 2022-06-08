@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hankest_meta/screens/components/commit_button.dart';
-import 'package:hankest_meta/screens/scan_qrcode_screen.dart';
+import 'package:hankest_meta/screens/setting_wallet_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -56,17 +56,10 @@ class WelcomeScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const ScanQrcodeScreen()),
+                    builder: (context) => const SettingWalletScreen()),
               );
             },
-            buttonName: "新手上路",
-            width: MediaQuery.of(context).size.width / 3 * 2,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          CommitButton(
-            buttonName: "綁定現有wallet",
+            buttonName: "馬上開始! ",
             width: MediaQuery.of(context).size.width / 3 * 2,
           ),
         ],
