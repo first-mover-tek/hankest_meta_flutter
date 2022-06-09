@@ -11,24 +11,53 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 1;
+  WebViewController? webViewController;
+  Widget? _child;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  WebView _createWebView(String url) {
+    return WebView(
+        initialUrl: url,
+        javascriptMode: JavascriptMode.unrestricted,
+        onWebViewCreated: (controller) {
+          webViewController = controller;
+        });
+  }
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      if (index == 0 || index == 1) {
+        var url = "about:blank";
+        if (index == 0) {
+          url =
+              'https://shopee.tw/%E3%80%90Markverse-NFT%E3%80%91-%E5%AE%98%E6%96%B9%E7%99%BD%E5%90%8D%E5%96%AE-i.162008941.13080011822?xptdk=d9ea4987-4e16-49f6-8818-0e6f54088d3d';
+        }
+        if (index == 1) {
+          url =
+              'https://nft-web-e71c3.firebaseapp.com/nftBind2?userid=uuid&address=0x5D715C0bDEbbc6929682BaBD0a7Da865b165897D';
+        }
+        if (webViewController == null) {
+          _child = _createWebView(url);
+        } else {
+          webViewController!.loadUrl(url);
+        }
+      }
+
+      if (index == 2) {
+        webViewController = null;
+        _child = Container();
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _widgetOptions = <Widget>[
-      Container(),
-      const WebView(
-        initialUrl:
-            'https://nft-web-e71c3.firebaseapp.com/nftBind?wallet=0x5D715C0bDEbbc6929682BaBD0a7Da865b165897D',
-        javascriptMode: JavascriptMode.unrestricted,
-      ),
-      Container(),
-    ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -49,7 +78,15 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: _child ??
+            WebView(
+              initialUrl:
+                  "https://nft-web-e71c3.firebaseapp.com/nftBind2?userid=uuid&address=0x5D715C0bDEbbc6929682BaBD0a7Da865b165897D",
+              javascriptMode: JavascriptMode.unrestricted,
+              onWebViewCreated: (controller) {
+                webViewController = controller;
+              },
+            ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
